@@ -29,7 +29,7 @@ import java.util.*;
 final public class Evaluator
 {
     /**
-     *Enthaelt Testcode. Diese Methode kann mittels java symex.evaluator.Evaluator
+     *Enthaelt Testcode. Diese Methode kann mittels java ch.zeh.evaluator.Evaluator
      *direkt aufgerufen werden.
      *
      *param args Argumente der Kommandozeile, welche aber nicht verwendet werden.

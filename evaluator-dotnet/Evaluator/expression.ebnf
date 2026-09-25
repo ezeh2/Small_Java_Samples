@@ -1,0 +1,32 @@
+(* Priority follows the Java TreeFactory: comparison binds more tightly
+   than logic, conditional, multiplication, and addition.
+   Repetitions are evaluated from left to right, including conditionals.
+   The true branch of a conditional is a complete expression. *)
+Expression = Sum;
+Sum = Product, { AddOperator, Product };
+Product = Conditional, { MultiplyOperator, Conditional };
+Conditional = OrExpression, { Question, Expression, Colon, OrExpression };
+OrExpression = AndExpression, { OrOperator, AndExpression };
+AndExpression = Comparison, { AndOperator, Comparison };
+Comparison = Unary, { CompareOperator, Unary };
+Unary = { Sign }, Postfix;
+Postfix = Primary, { Percent };
+Primary = Number | Variable | Group;
+Group = "(", Expression, ")";
+
+AddOperator := "+" | "-";
+MultiplyOperator := "*" | "/";
+OrOperator := "|";
+AndOperator := "&";
+CompareOperator := CompareCharacter, { CompareCharacter };
+CompareCharacter := "<" | ">" | "=";
+Sign := "+" | "-";
+Percent := "%";
+Question := "?";
+Colon := ":";
+
+(* := is an Eto.Parse extension: no whitespace inside a token. *)
+Number := Digit, { Digit }, [ ".", { Digit } ] | ".", Digit, { Digit };
+Variable := Letter, { Letter | Digit | "." };
+Digit := "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
+Letter := ? Terminals.Letter ?;

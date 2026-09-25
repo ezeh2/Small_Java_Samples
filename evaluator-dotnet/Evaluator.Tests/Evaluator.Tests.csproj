@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>Exe</OutputType></PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Evaluator/Evaluator.csproj" />
+    <None Include="JavaReference.java" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
